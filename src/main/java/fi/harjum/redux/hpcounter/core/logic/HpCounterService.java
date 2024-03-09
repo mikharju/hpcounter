@@ -24,7 +24,10 @@ public class HpCounterService implements HpCounterCommandInterface {
         RpgCharacter old = checkExistingCharacter(id);
         int newHp = old.hp() + hpDelta;
         int limitedHp = Math.min(Math.max(0, newHp), old.maxHp());
-        data.updateCharacter(new RpgCharacter(old.name(), limitedHp, old.id(), old.maxHp()));
+        ActionResponse updateResponse = data.updateCharacter(new RpgCharacter(old.name(), limitedHp, old.id(), old.maxHp()));
+        if (updateResponse.error() != null) {
+            return ResponseFactory.error(2, "Failed to update character %d hp, error was: %s", id, updateResponse.error());
+        }
         return ResponseFactory.success("Updated hp of %s to %d.", old.name(), limitedHp);
     }
 
@@ -59,7 +62,7 @@ public class HpCounterService implements HpCounterCommandInterface {
     private RpgCharacter checkExistingCharacter(int id) {
         RpgCharacter old = data.getCharacter(id);
         if (old == null) {
-            throw new HpCounterException(2, "Character with id %d not found.", id);
+            throw new HpCounterException("Character with id %d not found.", id);
         }
         return old;
     }
