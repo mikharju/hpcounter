@@ -1,7 +1,5 @@
 package fi.harjum.redux.hpcounter.core.interfaces;
 
-import fi.harjum.redux.hpcounter.core.interfaces.ActionResponse;
-
 public class ResponseFactory {
 
     public static ActionResponse success(String msg, Object ... params) {

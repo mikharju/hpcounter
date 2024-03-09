@@ -2,18 +2,14 @@ package fi.harjum.redux.hpcounter.rest;
 
 import fi.harjum.redux.hpcounter.core.interfaces.*;
 import fi.harjum.redux.hpcounter.persistence.PlainJavaInMemoryPersistence;
-import io.micrometer.common.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class HpCounterController {
 
-    private HpCounterCommandInterface cmd;
-    private int newId = 0;
+    private final HpCounterCommandInterface cmd;
 
     public HpCounterController() {
         this.cmd = CoreStart.init(new PlainJavaInMemoryPersistence());
