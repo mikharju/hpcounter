@@ -32,7 +32,7 @@ public class HpCounterController {
 
     @PostMapping("/character")
     public RpgCharacter newCharacter(@RequestBody NewCharacterRequest req) {
-        return cmd.newCharacter(req);
+        return cmd.newCharacter(req.name(), req.hp());
     }
 
     @DeleteMapping("/character/{id}")

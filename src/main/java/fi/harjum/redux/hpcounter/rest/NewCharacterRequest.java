@@ -1,4 +1,4 @@
-package fi.harjum.redux.hpcounter.core.interfaces;
+package fi.harjum.redux.hpcounter.rest;
 
 public record NewCharacterRequest(String name, int hp) {
 }

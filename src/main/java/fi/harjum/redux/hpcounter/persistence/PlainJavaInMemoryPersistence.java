@@ -29,7 +29,7 @@ public class PlainJavaInMemoryPersistence implements HpCounterPersistenceInterfa
     @Override
     public ActionResponse updateCharacter(RpgCharacter rpgCharacter) {
         store.put(rpgCharacter.id(), rpgCharacter);
-        return ResponseFactory.success("Persisted character %s", rpgCharacter.toString());
+        return ResponseFactory.payload(rpgCharacter, "Persisted character %s", rpgCharacter.toString());
     }
 
     @Override
