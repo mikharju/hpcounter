@@ -7,6 +7,6 @@ public class ResponseFactory {
     }
 
     public static ActionResponse error(int code, String errorMsg, Object ... params) {
-        return new ActionResponse(null, String.format(errorMsg, params), 1);
+        return new ActionResponse(null, String.format(errorMsg, params), code);
     }
 }
